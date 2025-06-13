@@ -1,14 +1,12 @@
-import spacy
 import os
-from analyze_output import process_corpus, nlp
+from process_corpus import process_corpus, nlp
 
-corpus_path = os.path.join(os.path.dirname(__file__), "corpus.txt")
-docs = process_corpus(nlp, corpus_path)
+if __name__ == "__main__":
+    corpus_path = os.path.join(os.path.dirname(__file__), "corpus.txt")
+    docs = process_corpus(nlp, corpus_path)
 
-# Example statement
-example_statement = "change layer to metal 1 drawing"
-doc = nlp(example_statement)
-
-# Print entities for the example statement
-for ent in doc.ents:
-    print(ent.text, ent.label_)
+    # Example: process a single statement
+    example_statement = "change layer to poly drawing"
+    doc = nlp(example_statement)
+    for ent in doc.ents:
+        print(ent.text, ent.label_)

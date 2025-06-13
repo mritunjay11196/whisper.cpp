@@ -7,7 +7,11 @@ from tech import objects, params, instances, layers, purposes
 
 def add_domain_patterns(nlp):
     """Add domain-specific NER patterns to a spaCy pipeline."""
-    ruler = nlp.add_pipe("entity_ruler", before="ner")
+    ruler = nlp.add_pipe(
+        "entity_ruler",
+        before="ner",
+        config={"phrase_matcher_attr": "LOWER"}  # <-- add this line
+    )
     patterns = []
     patterns += [{"label": "OBJECT", "pattern": obj} for obj in objects]
     patterns += [{"label": "PARAM", "pattern": param} for param in params]
